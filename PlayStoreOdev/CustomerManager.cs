@@ -29,9 +29,9 @@ namespace PlayStoreOdev
             Console.WriteLine(customer.FirstName + "isimli kullanıcı bilgisi güncellendi");
         }
 
-        public void Delete()
+        public void Delete(Customer customer)
         {
-            Console.WriteLine("Hesap başarıyla silindi");
+            Console.WriteLine("*" + customer.FirstName + " " + customer.LastName + "* isimli kullanıcı hesabı başarıyla silindi");
         }
 
         

@@ -8,18 +8,22 @@ namespace PlayStoreOdev
     {
         public void CampaignAdd(Campaign campaign)
         {
-            Console.WriteLine("Sisteme " + campaign.CampaignName + " kampanyası eklendi");
+            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("Sisteme ***" + campaign.CampaignName + "*** kampanyası eklendi\n");
         }
 
         public void CampaignDelete(Campaign campaign)
         {
-            Console.WriteLine("Sistemden " + campaign.CampaignName + " kampanyası silindi");
+            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("Sistemden ***" + campaign.CampaignName + "*** kampanyası silindi\n");
         }
 
         public void CampaignUpdate(Campaign campaign)
         {
-            Console.WriteLine("Sistemde " + campaign.CampaignName + " kampanyası güncellendi");
+            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("Sistemde ***" + campaign.CampaignName + "*** kampanyası güncellendi\n");
         }
-       
+
+        
     }
 }

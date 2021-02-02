@@ -13,14 +13,14 @@ namespace PlayStoreOdev
 
             Customer customer3 = new Customer { Id = 3, FirstName = "Engin", LastName = "Erdem", Tc = "85463202088", DateOfBirth = "01.07.2000" };
 
-
+            //************************************************************************
 
             Campaign campaign1 = new Campaign { CampaignId = 101, CampaignName = "BlackFriday kampanyası", CampaignDiscount = 25 };
 
             Campaign campaign2 = new Campaign { CampaignId = 102, CampaignName = "Yılbaşı kampanyası", CampaignDiscount = 50 };
 
+            //************************************************************************
 
-            
             Game game1 = new Game { GameId = 111, GameName = "Minecraft for Windows of Master", GamePrice = 100 };
 
             Game game2 = new Game { GameId = 222, GameName = "Grand Theft Auto San Andreas", GamePrice = 300 };
@@ -31,15 +31,28 @@ namespace PlayStoreOdev
 
             Game game5 = new Game { GameId = 555, GameName = "Football Manager 2021", GamePrice = 150 };
 
+            //************************ Müşteri ile ilgili İşlemler *******************************
+
             CustomerManager customerManager = new CustomerManager();
             AccountVerification accountVerification = new AccountVerification();
 
-            customerManager.Add(customer1, accountVerification);
-            customerManager.Add(customer2, accountVerification);
-            customerManager.Add(customer3, accountVerification);
+            List<Customer> customers = new List<Customer> { customer1, customer2, customer3 };
+            foreach (var customer in customers)
+            {
+                customerManager.Add(customer, accountVerification);
+            }
 
+            //************************* Oyun ile ilgili işlemler *******************************
 
-            List<Game> games = new List<Game> {game1,game2,game3,game4,game5 };
+            List<Game> games = new List<Game> { game1, game2, game3, game4, game5 };
+            GameManager gameManager = new GameManager();
+            foreach (var game in games)
+            {
+                gameManager.GameAdd(game);
+            }
+
+            //************************************************************************
+
             Console.WriteLine("********* Oyun Listesi *********\n");
             int i = 1;
             foreach (var game in games)
@@ -51,17 +64,29 @@ namespace PlayStoreOdev
                 i++;
             }
 
+            //************************ Kampanya ile ilgili işlemler ********************************
 
-            List<Campaign> campains = new List<Campaign> { campaign1, campaign2 };
+            List<Campaign> _campaigns = new List<Campaign> { campaign1, campaign2 };
+            CampaignManager _campaign = new CampaignManager();
+            foreach (var campaign in _campaigns)
+            {
+                _campaign.CampaignAdd(campaign);
+            }
+            
+
+            List<Campaign> campaigns = new List<Campaign> { campaign1, campaign2 };
             i = 1;
             Console.WriteLine("********* Kampanya Listesi *********\n");
-            foreach (var campaign in campains)
+            foreach (var campaign in campaigns)
             {
                 Console.WriteLine("--- " + i + ".Kampanya bilgisi ---\n");
                 Console.WriteLine("Kampanya ismi: " + campaign.CampaignName);
                 Console.WriteLine("Kampanya indirimi: " + campaign.CampaignDiscount + " %\n\n");
                 i++;
             }
+
+            //************************************************************************
+
 
             SalesManagement salesManagement = new SalesManagement();
 
@@ -73,7 +98,19 @@ namespace PlayStoreOdev
             salesManagement.KampanyalıOyunSatısı(customer2,game3,campaign2);
 
             salesManagement.KampanyalıOyunSatısı(customer3, game5, campaign1);
+
+            //************************************************************************
+
+
+            _campaign.CampaignDelete(campaign1);
+
+            gameManager.GameDelete(game5);
+
+            customerManager.Delete(customer2);
+
             
+
+
 
             Console.ReadLine();
         }
